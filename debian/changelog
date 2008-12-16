@@ -1,0 +1,92 @@
+tp-smapi (0.40-1) experimental; urgency=low
+
+  * New upstream release.
+  * Refresh debian/patches/99_Makefile-for-Debian.dpatch.
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Tue, 16 Dec 2008 09:48:28 +0100
+
+tp-smapi (0.39-1) experimental; urgency=low
+
+  * New upstream release.
+  * Drop 02_fix_semaphore_h_include.dpatch, included upstream.
+  * Refresh 01_include-thinkpad_ec.h-directly.dpatch.
+  * Bump Standards-Version to 3.8.0.
+  * Add README.source.
+  * Move bzip2 from Build-Depends to Build-Depends-Indep.
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Tue, 30 Sep 2008 19:38:49 +0200
+
+tp-smapi (0.37-3) unstable; urgency=low
+
+  * New patch 02_fix_semaphore_h_include.dpatch
+    + Fixes the include of semaphore.h in newer kernels (Closes: #497990).
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Mon, 08 Sep 2008 15:19:45 +0200
+
+tp-smapi (0.37-2) unstable; urgency=low
+
+  * Update 99_Makefile-for-Debian.dpatch to not set CFLAGS (Closes: #476360)
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Wed, 16 Apr 2008 12:55:41 +0200
+
+tp-smapi (0.37-1) unstable; urgency=low
+
+  * New Upstream Version
+  * Drop 02_fix_2.6.25.dpatch, was merged upstream
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Sat, 29 Mar 2008 09:54:31 +0100
+
+tp-smapi (0.36-2) unstable; urgency=low
+
+  * Update 99_Makefile-for-Debian.dpatch
+    tp-smapi is now build-able via linux-modules-extra (Closes: 462952)
+  * Add 02_fix_2.6.25.dpatch
+    Fix build errors with 2.6.25 kernel
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Mon, 11 Feb 2008 16:12:50 +0100
+
+tp-smapi (0.36-1) unstable; urgency=low
+
+  * New upstream release
+    Fixes HDAPS on T/R 61 (Closes: #460060)
+    Adds correct HDAPS orientation for X61 (Closes: #461825)
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Mon, 28 Jan 2008 00:58:22 +0100
+
+tp-smapi (0.34-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Mon, 07 Jan 2008 08:32:37 +0100
+
+tp-smapi (0.33-1) unstable; urgency=low
+
+  * New upstream release
+  * Drop patches/02_Makefile-for-2.6.24.dpatch, upstream supports 2.6.24
+  * Bump to Standards-Version 3.7.3, no changes needed
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Fri, 28 Dec 2007 13:53:40 +0100
+
+tp-smapi (0.32-3) unstable; urgency=low
+
+  * added Homepage-field to debian/control
+  * moved examples/sysfs.conf from -source to -modules
+  * fixed a typo in the long description
+  * fixed the reference to GPL (it's GPL-2, not GPL-3 where GPL links to)
+  * removed an unused file in debian/patches
+  * use 'CFLAGS ?=', not just '='
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Wed, 5 Dec 2007 16:41:00 +0100
+
+tp-smapi (0.32-2) UNRELEASED; urgency=low
+
+  * some cleanups, thanks to Joe Nahmias
+  * make tp-smapi compile against kernels >= 2.6.24
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Tue, 4 Dec 2007 09:49:00 +0100
+
+tp-smapi (0.32-1) UNRELEASED; urgency=low
+
+  * Initial release (Closes: #398533)
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Mon, 6 Aug 2007 23:44:53 +0200

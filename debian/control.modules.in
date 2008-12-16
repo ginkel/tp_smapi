@@ -1,0 +1,17 @@
+Source: tp-smapi
+Section: utils
+Priority: optional
+Maintainer: Evgeni Golov <sargentd@die-welt.net>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.3
+Homepage: http://tpctl.sourceforge.net/
+
+Package: tp-smapi-modules-_KVERS_
+Architecture: any
+Depends: linux-modules-_KVERS_ | linux-image-_KVERS_
+Provides: tp-smapi-modules
+Suggests: sysfsutils
+Description: tp_smapi modules for Linux (kernel _KVERS_)
+ This package contains the compiled kernel modules for _KVERS_
+ .
+ This package also contains the compiled HDAPS modules for _KVERS_

@@ -1,0 +1,43 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_include-thinkpad_ec.h-directly.dpatch by Evgeni Golov <sargentd@die-welt.net>
+##
+## DP: include thinkpad_ec.h directly, not via linux/thinkpad_ec.h
+
+@DPATCH@
+
+diff -Nrwu tp_smapi-0.39.orig/hdaps.c tp_smapi-0.39/hdaps.c
+--- tp_smapi-0.39.orig/hdaps.c	2008-09-27 19:55:45.000000000 +0200
++++ tp_smapi-0.39/hdaps.c	2008-09-30 18:35:34.000000000 +0200
+@@ -34,7 +34,7 @@
+ #include <linux/timer.h>
+ #include <linux/dmi.h>
+ #include <linux/jiffies.h>
+-#include <linux/thinkpad_ec.h>
++#include "thinkpad_ec.h"
+ #include <linux/pci_ids.h>
+ #include <linux/version.h>
+ 
+diff -Nrwu tp_smapi-0.39.orig/thinkpad_ec.c tp_smapi-0.39/thinkpad_ec.c
+--- tp_smapi-0.39.orig/thinkpad_ec.c	2008-09-27 19:55:45.000000000 +0200
++++ tp_smapi-0.39/thinkpad_ec.c	2008-09-30 18:35:58.000000000 +0200
+@@ -34,7 +34,7 @@
+ #include <linux/dmi.h>
+ #include <linux/ioport.h>
+ #include <linux/delay.h>
+-#include <linux/thinkpad_ec.h>
++#include "thinkpad_ec.h"
+ #include <linux/jiffies.h>
+ #include <asm/io.h>
+ 
+diff -Nrwu tp_smapi-0.39.orig/tp_smapi.c tp_smapi-0.39/tp_smapi.c
+--- tp_smapi-0.39.orig/tp_smapi.c	2008-09-27 19:55:45.000000000 +0200
++++ tp_smapi-0.39/tp_smapi.c	2008-09-30 18:35:45.000000000 +0200
+@@ -42,7 +42,7 @@
+ #include <linux/mc146818rtc.h>	/* CMOS defines */
+ #include <linux/delay.h>
+ #include <linux/version.h>
+-#include <linux/thinkpad_ec.h>
++#include "thinkpad_ec.h"
+ #include <linux/platform_device.h>
+ #include <asm/uaccess.h>
+ #include <asm/io.h>

@@ -1,0 +1,48 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 99_Makefile-for-Debian.dpatch by Evgeni Golov <sargentd@die-welt.net>
+##
+## DP: make the Makefile work better with debian kernel-package
+
+@DPATCH@
+
+--- tp-smapi_0.40.orig/Makefile	2008-12-16 09:45:04.000000000 +0100
++++ tp-smapi_0.40/Makefile	2008-12-16 09:45:21.000000000 +0100
+@@ -1,12 +1,13 @@
+ ifndef TP_MODULES
+ # This part runs as a normal, top-level Makefile:
+ X:=$(shell false)
+-KVER        := $(shell uname -r)
++PWD         := $(shell pwd)
++#KVER        := $(shell uname -r)
+ KBASE       := /lib/modules/$(KVER)
+-KSRC        := $(KBASE)/source
+-KBUILD      := $(KBASE)/build
++KSRC        ?= $(PWD)
++#KBUILD      := $(KBASE)/build
++KBUILD      := $(KSRC)
+ MOD_DIR     := $(KBASE)/kernel
+-PWD         := $(shell pwd)
+ IDIR        := include/linux
+ TP_DIR      := drivers/misc
+ TP_MODULES  := thinkpad_ec.o tp_smapi.o
+@@ -25,6 +26,11 @@
+ THINKPAD_EC_PARAM := 
+ endif
+ 
++ifneq ($(KERNELRELEASE),)
++	TP_MODULES  += hdaps.o
++	obj-m  := $(TP_MODULES)
++else
++endif
+ DEBUG := 0
+ 
+ ifneq ($(shell [ -f $(KBUILD)/include/linux/aio_abi.h ] && echo 1),1)
+@@ -94,7 +100,7 @@
+ #####################################################################
+ # Generate a stand-alone kernel patch
+ 
+-TP_VER := ${shell sed -ne 's/^\#define TP_VERSION \"\(.*\)\"/\1/gp' tp_smapi.c}
++#TP_VER := ${shell sed -ne 's/^\#define TP_VERSION \"\(.*\)\"/\1/gp' tp_smapi.c}
+ ORG    := a
+ NEW    := b
+ PATCH  := tp_smapi-$(TP_VER)-for-$(KVER).patch
