@@ -1,0 +1,552 @@
+Change history for the tp_smapi package:
+
+0.40 2008-12-16
+---------------------
+- thinkpad_ec: Added a "force_io=1" module parameter, to let it load on
+  recent ThinkPad models (e.g., T400 and T500). This is a kludge to work
+  around an ACPI DSDT which claims the ports we need.
+- tp_smapi: Don't restore battery charging thresholds when resuming from
+  suspend-to-RAM.
+- When building, use /lib/modules/*/build instead of /lib/modules/*/src
+  and give a clearer error message if that's missing.
+
+0.39 2008-09-27
+---------------------
+- Fixed compilation on kernels <2.6.26
+  (thanks to Evgeni Golov and Whoopie!)
+
+0.38 2008-09-26
+---------------------
+- Fixed compilation on kernel 2.6.27-rc7.
+- tp_smapi: Added a new battery attribute
+  /sys/devices/platform/smapi/BAT?/remaining_percent_error
+  This is the error margin for the remaing_percent attribute.
+  Unfortunately, it doesn't seem to be reset by battery calibration.
+- hdaps: Removed the fake_data_mode attribute.
+
+0.37 2008-03-28
+---------------------
+- Fix compilation on kernel 2.6.25
+- hdaps whitelist: changed default orientation of ThinkPad R60, R61, X40, X41.
+- tp_smapi: Added 3 new read-only battery attributes
+  /sys/devices/platform/smapi/BAT?/remaining_running_time_now
+    (time remaining according to instantenous power instead of average)
+  /sys/devices/platform/smapi/BAT?/charging_max_current
+    (maximum current allowed during charging)
+  /sys/devices/platform/smapi/BAT?/charging_max_voltage
+    (maximum voltage allowed during charging)
+- tp_smapi and README: improved documentation of battery info attributes.
+
+0.36 2008-01-27
+---------------------
+- tp_smapi: Added a 4th cell group voltage attribute:
+  /sys/devices/platform/smapi/BAT0/group3_voltage
+- tp_smapi: Reversed order of the group{0,1,2}_voltage attributes.
+- hdaps whitelist: changed default orientation of ThinkPad X61.
+- README: Improve attributes documentation.
+- Sourcecode cleanups.
+
+0.35-test1 2008-01-21
+---------------------
+- Allow loading on new T61 firmware that caused an "hdaps_check_ec failed
+  error. Correct operation with this firmware is not yet fully tested.
+- tp_smapi: Added 3 new sysfs attributes:
+  /sys/devices/platform/smapi/BAT0/group0_voltage
+  /sys/devices/platform/smapi/BAT0/group1_voltage
+  /sys/devices/platform/smapi/BAT0/group2_voltage
+  ThinkPad batteries (at least on the 600, X3x, T4x and R5x models) contains
+  3 cell groups in series, where each group consisting of 2 or 3 cells
+  connected in parallel. The voltage of each group is given by these attributes.
+  (The effective performance of the battery is determined by the weakest
+  group, i.e., the one those voltage changes most rapidly during dis/charging.)
+- hdaps whitelist: changed default orientation of ThinkPad X60 Tablet,
+  X61 Tablet and ThinkPad X60s and ThinkPd T60.
+- hdaps: when hdaps_ec_check fails, report the values received from the EC.
+
+0.34  2008-01-06
+---------------------
+- hdaps: Fixed handling of "invert" module parameter (make it a uint,
+  and don't let whitelist override module parameter).
+  Contributed by Ostap Cherkashin.
+- hdaps whitelist: change ThinkPad X61s and T61 default orientation.
+  X60 Tablet and X61 Tablet remain wrong until someone reports their DMI ID.
+
+0.33  2007-12-22
+---------------------
+- Ported to kernel 2.6.24-rc6.
+  Building on older kernels will cause harmless warnings about pointer types.
+  (Makefile patch contributed by Tim Niemeyer and Whoopie.)
+- README: Document the additional hdaps attributes and the reduced timer
+  interrupts introduced on 0.32.
+- hdaps: Extends the "invert" parameter to cover all possible axis
+  orientations.
+  The possible values are as follows.
+  Let X,Y denote the hardware readouts.
+  Let R denote the laptop's roll (tilt left/right).
+  Let P denote the laptop's pitch (tilt forward/backward).
+    invert=0:   R= X  P= Y   (same as mainline)
+    invert=1:   R=-X  P=-Y   (same as mainline)
+    invert=2:   R=-X  P= Y   (new)
+    invert=3:   R= X  P=-Y   (new)
+    invert=4:   R= Y  P= X   (new)
+    invert=5:   R=-Y  P=-X   (new)
+    invert=6:   R=-Y  P= X   (new)
+    invert=7:   R= Y  P=-X   (new)
+  It's probably easiest to just try all 8 possibilities and see which yields
+  correct results (e.g., in the hdaps-gl visualisation).
+- hdaps: Adds a whitelist which automatically sets the correct axis orientation
+  for some models. If the value for your model is wrong or missing, you can
+  override it using the "invert" parameter. Please also update the tables at
+  http://www.thinkwiki.org/wiki/tp_smapi and
+  http://www.thinkwiki.org/wiki/List_of_DMI_IDs
+  and submit a patch for the whitelist in hdaps.c.
+- tp_smapi: Report EOPNOTSUPP instead of ENOSYS for unimplemented SMAPI
+  functions.
+
+0.32 2007-07-28
+---------------------
+- hdaps: Added a second input device which publishes the raw sensor position,
+  without joystick fuzz. In conjunction with a new hdapsd, this lets us
+  avoid the frequent redundant interrupts caused by hdapsd.
+- hdaps: Stop polling the hardware when no one is listening. This prevents
+  unnecessary interrupts on tickless kernel. (Contributed by Michael Riepe.)
+- In the patch generated by "make patch", thinkpad_ec and tp_smapi now reside
+  under drivers/misc instead of drivers/platform.
+- "make patch" fixed for kernel 2.6.22.
+- Removed kludge for kernels lacking the DMI OEM String decode patch.
+- Now requires kernel >= 2.6.19 (due to above).
+- Removed the useless "enable_pci_power_saving_on_boot" sysfs attribute.
+
+0.31  2007-03-07
+---------------------
+Visible changes:
+- Fix #includes to allow compilation on 64-bit platforms
+  (patch by Emil Renner Berthing).
+- thinkpad_ec: Avoid spurious "bad end STR3: (...)->0x80" warnings
+  by relaxing status check (still OK according to H8 EC docs).
+- Invert axes on all T60, not just T60p.
+
+Internal changes:
+- Add __init to find_smapi_port() and thinkpad_ec_test()
+- tp_smapi.c: Fix "initialization from incompatible pointer type" warnings
+  on 64-bit platforms
+
+0.30  2006-09-03
+---------------------
+Visible changes:
+- Makefile: now supports kernels built with separate source and build
+  directories (thanks to Lenz Grimmer).
+  To work against against some kernel installed under /lib/modules/
+  add an appropriate KVER= parameter:
+  # make patch KVER=2.6.16-rc2
+  If it's not installed you'll need to set KSRC and KBUILD too:
+  # make patch KVER=2.6.16-rc2 KSRC=$HOME/2.6.16-rc2 KBUILD=$HOME/2.6.16-rc2
+- Changed the format of /sys/devices/platform/smapi/smapi_request
+  (no more register names).
+
+Internal changes:
+- tp_smapi: the 'dump' sysfs attribute now outputs only rows 0x00 through 0x0a,
+  since 0x0b causes an EC hang on some firmware (e.g., all T42 and old T43).
+  Thanks to Henrique and Sukant for tracking this down!
+- thinkpad_ec: Log a warning if 0x161F returns 0x80.
+- thinkpad_ec: Increase TPC_REQUEST_RETRIES
+- thinkpad_ec: Report row args upon data read error.
+- hdaps: Apply hwmon-hdaps-handle-errors-from-input-register-device.patch
+  from -mm.
+
+0.29  2006-08-17
+---------------------
+Visible changes:
+- Added new sysfs attributes to tp_smapi:
+    /sys/devices/platform/smapi/BAT0/remaining_percent
+    /sys/devices/platform/smapi/BAT0/remaining_running_time
+    /sys/devices/platform/smapi/BAT0/remaining_charging_time
+    /sys/devices/platform/smapi/BAT0/temperature    # milli-Celsius
+  All of these are read directly from the embedded controller, so they are
+  more accurate than doing your own computation.
+
+Internal changes:
+- tp_smapi: Extended and commented battery attribute show functions.
+
+0.28  2006-08-16
+---------------------
+Visible changes:
+- thinkpad_ec: Removed 'debug' module parameter, it no longer affected much.
+- tp_smapi: Remove optical drive speed control (formerly #ifdefed out).
+
+Internal changes:
+- hdaps: Removed __init from hdaps_check_ec(). This fixes crashes on resume
+  (Thanks, Igor!).
+- hdaps: Moved axis transformation to dedicated function transform_axes().
+- tp_smapi: Cleaned up printk() output, changed macros.
+- tp_smapi: Added "E" to SMAPI parameter names (BX->EBX) - they're 32-bit.
+- tp_Smapi: Removed verbose printks()s on bad sysfs args.
+- A lot of small cleanups.
+
+0.27 2006-08-05
+---------------------
+Visible changes:
+- Renamed tp_base.* to thinkpad_ec.*.
+  NOTE: If you have manual modprobe commands or configuration mentioning 
+  tp_base, you'll need to change them.
+- hdaps: All HDAPS-equippedThinkPads should be now be automatically
+  recognized. Whitelisting is needed only for changing the axis
+  configuration.
+- hdaps: Removed 'force' module parameter, it's no longer needed.
+
+Internal changes:
+- Renamed all tp_controller_* functions to thinkpad_ec_*.
+- Small change to invalidation in hdaps_device_init().
+- Separate Kconfig changes into separate patches.
+- Clean up generated patch format a bit.
+
+0.26 2006-08-04
+---------------------
+- The modified hdaps.c is now included as a full file (based on linux git)
+  instead of a patch, to solve compilation and versioning problems.
+- Makefile: Fixed a problem with "make patch" on new kernels.
+- tp_smapi.c: renamed internal attribute functions.
+
+0.25 2006-08-03
+---------------------
+- Added new attribute: 
+  /sys/devices/platform/smapi/enable_pci_power_saving_on_boot
+  This controls the "PCI bus power saving" option in the BIOS (takes
+  effect at the next boot).
+- Added new attribute: 
+  /sys/devices/platform/smapi/smapi_request
+  This performs raw SMAPI calls. It uses a bad interface that cannot handle
+  multiple simultaneous accesses. Don't touch it, it's for development only.
+- "make patch" works again. If needed, the resulting patch will include
+  the dmi-decode-and-save-oem-string-information patch.
+- "make load" now gives an informative error if ran as non-root.
+- Makefile: Give nicer error message on kernel <= 2.6.16.
+- Makefile: Verify that /usr/sbin/dmidecode works.
+
+0.24-test3 2006-08-01
+---------------------
+- tp_base: fix compilation error on unpatched kernels.
+
+0.24-test1 2006-07-31
+---------------------
+This is an experimental version with a few quirks necessary for testing new
+code. It's OK to run it yourself to try the new features, but it's not 
+suitable for packaging in distributions. The stable version remains 0.22.
+
+Changes to loading, whitelisting and building:
+- Detection of the embedded controller (needed for all our modules) is now 
+  done according to OEM Strings in the DMI information. If the EC is not
+  mentioned there (you can check it in 'dmidecode' too) you'll get a 
+  "tp_base: no ThinkPad embedded controller!" message in dmesg and the 
+  modules won't load. If tp_smapi used to work and was broken by this,
+  please report. A few known exceptions are already 
+- The above wants the following kernel patch (soon to be included in -mm):
+  diff/dmi-decode-and-save-oem-string-information.patch
+  If this patch is not already applied to the current kernel, the Makefile 
+  and tp_base.c default to an ugly kludge where the DMI information is
+  hardcoded into your driver instead of being read in runtime. You'll get 
+  a warning about it, but it will work nicely. Just don't run the compiled 
+  modules on a different machine. 
+  Sorry for the mess, but we need to exercise the DMI check code.
+- "make patch" is temporarily broken, due to the above.
+- hdaps: Ignore the "initial mode latch" during init, we're not using it and 
+  Lenovo keeps adding new ones.
+
+Changes to hdaps functionality:
+- hdaps: New attribute /sys/devices/platform/hdaps/sampling_rate. 
+  This determines how frequently of accelerometer state refresh, independently
+  of userspace polling (i.e., reading the position attribute more frequently
+  than this will yield duplicate readouts). Default=50.
+- Multiple hdaps applications can now run without stealing each other's data.
+  Set /sys/devices/platform/hdaps/sampling_rate to the highest rate required
+  by any app.
+- hdaps: New attribute /sys/devices/platform/hdaps/oversampling_ratio.
+  When set to X, the embedded controller is told to do physical accelerometer
+  measurements at a rate that is X times higher than the rate at which
+  the driver reads those measurements (i.e., X*sampling_rate). This
+  reduces sample phase difference is, and useful for the running average
+  filter (see next). Default=5.
+- hdaps: New attribute  /sys/devices/platform/hdaps/running_avg_filter_order.
+  When set to X, reported readouts will be the average of the last X physical
+  accelerometer measurements. Current firmware allows 1<=X<=8. Setting to a
+  high value decreases readout fluctuations. The averaging is handled
+  by the embedded controller, so no CPU resources are used. 
+  Default=2 (this implicit in previous versions).
+- hdaps: New attribute  /sys/devices/platform/hdaps/fake_data_mode (write only).
+  If set to 1, enables a test mode where the physical accelerometer readouts
+  are replaced with an incrementing counter. This is useful for checking the
+  regularity of the sampling interval and driver<->userspace communication.
+
+Changes to tp_smapi functionality:
+- tp_smapi: Removed the units ("mV", "mWh" etc.) from all /sys readouts, to
+  follow kernel convention.
+- tp_smapi: /sys/devices/platform/smapi/BAT?/dump now contains additional 
+  data lines (but we don't know what they mean). Default=0.
+- tp_smapi: /sys/devices/platform/smapi/BAT?/dump contains some unused values;
+  they're now omitted (replaced by "--") instead of showing semi-random junk.
+
+Other changes:
+- tp_smapi: fixed signness bug in current_now and current_avg when 
+  discharging (thanks to Pavel Machek!).
+- hdaps: Turn off power and EC polling upon suspend or module unload.
+- hdaps: Check more EC function return values.
+- hdaps: Refactored some functions.
+- tp_base: Test EC on module load and refuse loading if EC not found.
+- tp_base, hdaps, tp_smapi: changed args passing and made it more concise.
+- tp_smapi: cleaned up attribute macros.
+- tp_smapi: cleaned up smapi retry loop.
+- tp_smapi: removed smapi_write and dropped outAX param from smapi_request.
+- tp_smapi: improved comments.
+- tp_base: moved comments from tp_base.h to tp_base.c.
+
+Many of the above changes were suggested or contributed by
+Henrique de Moraes Holschuh.
+
+0.22  2006-07-20
+----------------
+- hdaps: Added support for X60s (but X axis is still inverted).
+- tp_base: Wait until EC starts replying before considering a request 
+  successful (this improves stability and eliminates abnormal events.)
+- hdaps: Removed /sys/devices/platform/hdaps/{variance,temp2}. They actually
+  show an older pending readout (if there is one), so it never makes sense
+  to read them via the existing interface.
+- tp_base: Added many additional status and consistency checks on EC, 
+  to give early warning on any strange behavior.
+- tp_base: New constants and comments greatly clarify access to the EC.
+- hdaps: Convert all init code to use tp_base transactions. Mo more direct 
+  IO port access.
+- hdaps: Move some init code to new functions hdaps_set_power() and 
+  hdaps_set_ec_config(). These will be exposed as attributes in the future.
+- hdaps: If init failed, tell at which step it happened.
+- tp_base: Allow additional inputs and optional outputs to EC requests.
+- tp_base: Decrease timeout for reply to request.
+- Kconfig: Make TP_BASE an invisible tristate option
+- tp_base: Rename tp_controller_trylock() to tp_controller_try_lock().
+- tp_base: make tp_controller_lock() return an int; have it checked in 
+  tp_smapi and hdaps.
+- tp_base: Rewrote all printk()s using macros, and made debug=1 quieter.
+- Makefile: work even if $SHELL is not bash.
+- Makefile: Autopatch hdaps patch to work with 2.6.18-rc1
+
+Many of the above changes were suggested or contributed by
+Henrique de Moraes Holschuh.
+
+0.21  2006-06-21
+----------------
+- Compatibility with kernel 2.6.17.
+- hdaps: Fixed a locking bug. This further reduces (completely solves?) the
+  EC hangs problem.
+  (Thanks to Rasto, Andrew and Whoopie for helping track this down!)
+- hdaps: Support for ThinkPad T60: added 0x04 as valid initial latch value
+- hdaps: Mousedev poll timer was not restarted after resume from suspend.
+- tp_base: Added verbose debug output, enabled by the "debug=1" module
+  parameter (and by "make load DEBUG=1")
+- tp_base: Cosmetic fix to tp_base DMI vendor reporting (patch by Whoopie).
+- Cleaned up some printk()s.
+- Makefile: "make load" now enables dmesg debug output only if given DEBUG=1.
+- Makefile: will not delete hdaps.c if edited manually after generation.
+
+0.20  2006-04-30
+----------------
+- Makefile: fix for "linux/tp_base.h: No such file or directory" problem.
+- tp_base: whitelist "LENOVO" vendor string too.
+- hdaps: add "force=1" parameter to force loading on models that are
+  not whitelisted (patch by Whoopie).
+- hdaps: fix init on several models by using tp_controller_read_row()
+  instead of direct port IO. This apparently also makes the initial latch
+  value is meaningful even when the device is already initialized.
+- Now requires kernel 2.6.15 or newer (compatibility cruft removed).
+
+0.19  2006-04-08
+----------------
+- Added new battery status attributes:
+  /sys/devices/platform/smapi/BAT?/first_use_date
+  /sys/devices/platform/smapi/BAT?/manufacture_date
+- Bugfix in tp_base embedded controller readout 
+  (missing prefetch invalidation). This apparently solves remnants of the
+  the embedded-controller-lockup problem.
+- "make load" now demands "HDAPS=1" if the hdaps module is loaded.
+- hdaps driver patch:
+  - Remember keyboard/mouse activity for 0.1sec, so that all applications
+    get a chance to read it (the hardware resets its activity flag
+    when it's read).
+
+0.18  2006-04-01
+----------------
+- Solved embedded controller lockups with HDAPS=1 (see hdaps comments below).
+- Added new function tp_controller_try_read_row() to tp_base.
+- Added extra status checks in tp_base, to catch abnormal conditions earlier.
+- Restructured several functions in tp_base for clarity and reusability.
+- Restructured tp_smapi attribute registration code using fancy macros, to 
+  remove redundancy.
+- Reduced prefetch delay and maximum retries in tp_base.
+- Now locks tp_controller when making SMAPI call (just in case).
+- Makefile change to fix compilation in Debian.
+- Minor cleanups and added comments in tp_smapi.c.
+- Major changes to hdaps patch:
+  - Whenever we read data from the controller, parse all of it and
+    remember the values in global vars.
+  - Simplified the device model *_show functions, via the above change.
+  - If the mousedev poll timer handler experiences a transient fault, use
+    use last saved data from the global vars.
+  - Handle delayed calibration at first opportunity, not just mousedev polls.
+  - Disable mousedev poll timer when suspending, to prevent readouts before
+    the resume code re-initializes the sensor.
+  - Don't accept initial status 0x00, it was probably an artifact of 
+    the premature mousepoll invocation.
+  - When doing a sensor readout in mousedev poll, avoid time-consuming
+    retries and fetches, to minimize time in softirq. This effectively 
+    exorcises an embedded controller lockup Heisenbug. There may still 
+    a nonzero probability of lockup, but now it's not worse than the 
+    vanilla hdaps (since they do essentially the same).
+
+0.17  2006-02-10
+----------------
+- Fixed off-by-one bugs in charge threshold handling + cleanup
+- Enforce bounds on threshold the same way Battery Maximizer does
+- Recognize more battry status values
+- Fixes in error reporting
+- Fixed a warning in tp_smapi.c
+- hdaps driver patches:
+  - Informatively report init errors
+  - Recognize 0x00 as a valid latch value
+  - Increase init timeouts
+
+0.16  2006-01-11
+----------------
+- Renamed smapi/BAT?/force_discharge1 to smapi/BAT?/force_discharge
+- Removed smapi/BAT?/force_discharge2 (doesn't work on any model)
+- HDAPS patch changes:
+  - Check ready status (instead of occasionally returning junk) also for 
+    variance, not just for position.
+  - Calibrate unsynchronously (reduces load and resume time by 1-2 seconds)
+  - Fix position readouts - read word, not byte.
+  - Fixed driver lockup when writing to hdaps/variance.
+- Changes in diff handling.
+
+0.15  2006-01-10
+----------------
+- Bugfix: 0.14 had broken SM BIOS call code.
+
+0.14  2006-01-09
+----------------
+This version has no user-visible functionality changes, but improves
+the reliability of coordinating hardware access with the hdaps driver.
+- Moved controller access code to tp_base.
+- Changes in HDAPS driver patch:
+  - Use tp_base for controller access instead of direct port IO. Using
+    the "row read" and "prefetch" abstraction of tp_base makes the hdaps
+    code shorter, clearer and safer.
+  - Added checking of the STATUS port and automatic retries if device is not
+    ready (previously it just returned junk values).
+  - Added missing lock in hdaps_invert_store.
+  - A few local code simplifications
+  - Redue the retry delay (200ms was excessive).
+- Changed SMAPI calls to use 32-bit args.
+- Made "make patch" produce an LKML-compliant patches
+  (include a diffstat, remove CD_SPEED, remove <2.6.15 #ifdefs).
+- Changes in Makefile and directory structure.
+
+0.13  2005-12-21
+----------------
+- First step toward resolving conflict with the hdaps module:
+  - Added a tp_base module, which handles coordination of access to the 
+    ThinkPad controller (thanks to Alan Cox and Rovert Love).
+  - Changed tp_smapi to require and use tp_base.
+  - "make load HDAPS=1" and "make install HDAPS=1" will copy and patch hdaps.c
+    for compatibility with tp_smapi and tp_base, and then load or install it.
+- Added a "make patch" target, which creates a stand-alone patch against the
+  current kernel tree (thanks, Spiney!).
+- Future kernel compatibility: avoids platform_device_register_simple.
+
+0.12  2005-12-16
+----------------
+- Added smapi/BAT?/force_discharge1 and
+        smapi/BAT?/force_discharge2.
+  When set to 1, they stop forces discharging of battery even if on AC power.
+  The two files have the same functionaliy but use different SMAPI calls to
+  achieve it. On ThinkPad T43 only force_discharge1 works; the other one is
+  completely untested.
+- Removed smapi/cd_speed (unless you set "#define PROVIDE_CD_SPEED"), since
+  its function is provided in a safer way by the combination of "hdparm -E"
+  (for CD) and speedcontrol (for DVD, http://safari.iki.fi/speedcontrol.c).
+
+0.10  2005-12-13
+----------------
+- Added smapi/BAT?/state (idle/charging/discharing).
+- Added smapi/BAT?/{power_now,power_avg}.
+- Renamed smapi/BAT?/{current1,current2} to {current_now,current_avg}.
+- If stop_charge_thresh is unsupported, when trying to set it don't affect
+  start_charge_thresh.
+- smapi/BAT?/{design_capacity,last_full_capacity} were reversed.
+- smapi/cdrom_speed renamed to cd_speed, and safety mechanism added: you must 
+  use "echo 1 yes_crash_my_computer > /sys/devices/platform/smapi/cd_speed".
+- Added smapi/ac_connected added (actually in 0.09).
+
+0.09  2005-12-12
+----------------
+- Dual-battery support: moved all battery-related sysfs files to
+  /sys/devices/platform/smapi/BAT0/*
+  and made the 2nd battery accessible via 
+  /sys/devices/platform/smapi/BAT1/*
+- Added numerous read-only battery status files:
+  /sys/devices/platform/smapi/BAT?/{installed,cycle_count,current1,current2,
+  last_full_capacity,remaining_capacity,design_capacity,voltage,
+  design_voltage,manufacturer,model,serial,barcoding,chemistry}
+  These are incompatible with HDAPS - see README.
+- /sys/devices/platform/smapi/BAT?/dump gives the raw status dump.
+- Added "debug" module parameter, default (debug=0) reduces printk verbosity.
+  For bug reports, please use "modprobe debug=1" (or just use "make load").
+- Now requires kernel >= 2.6.13 (stick with v0.08 for earlier kernels).
+- Suspend+resume now correctly handles default thresholds (start==stop==0).
+- Extended whitelist to cover all ThinkPads.
+- Cleanup of init/probing code.
+- Reduced kernel logging level
+- Fix in set_inhibit_charge
+
+0.08  2005-12-09
+----------------
+- Fixes in README and dmesg outputs.
+
+0.07 2005-12-07
+----------------
+- Added /sys/devices/platform/smapi/cdrom_speed to set/get the CD drive speed
+  level (0=slow, 1=medium, 2=fast).
+  WARNING: 
+  Writing to this file when the CD is being accessed will hang your computer.
+- Fixed some dmesg outputs
+
+0.06  2005-12-06
+----------------
+- /sys/devices/platform/smapi/inhibit_charge renamed to
+  /sys/devices/platform/smapi/inhibit_charge_minutes and now accepts
+  the number of minutes to inhibit charging.
+- Compatibility with kernel 2.6.12 (thanks to Guenther Starnberger)
+
+0.05  2005-12-05
+----------------
+- Kernel 2.6.15 compatibility (thanks to Volker Gropp)
+- Improved error reporting
+- Cleared confusing dmesg output
+
+0.04  2005-12-05
+----------------
+- Made start_charge_thresh work even with stop_start_thresh is
+  not available.
+
+0.03  2005-12-05
+----------------
+- Added /sys/devices/platform/smapi/inhibit_charge
+- Fixed #includes
+- Kernel 2.6.15 compatibility
+- Added versionless IBM machines to DMI whitelist
+- Added retries to SMAPI request code
+- Added list of supported models to README
+
+0.02  2005-12-05
+----------------
+- improved SMAPI request code and error reporting
+
+0.01  2005-12-04
+----------------
+- initial release
