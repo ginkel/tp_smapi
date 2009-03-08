@@ -6,6 +6,9 @@ Build-Depends: debhelper (>= 5), dpatch
 Build-Depends-Indep: bzip2
 Standards-Version: 3.8.0
 Homepage: http://tpctl.sourceforge.net/
+DM-Upload-Allowed: yes
+Vcs-Git: git://git.debian.org/git/users/sargentd-guest/tp-smapi.git
+Vcs-Browser: http://git.debian.org/?p=/users/sargentd-guest/tp-smapi.git
 
 Package: tp-smapi-source
 Architecture: all

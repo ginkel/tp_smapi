@@ -1,3 +1,12 @@
+tp-smapi (0.40-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/control:
+    + Set DM-Upload-Allowed: yes.
+    + Add Vcs-* headers.
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Sun, 08 Mar 2009 12:06:01 +0100
+
 tp-smapi (0.40-1) experimental; urgency=low
 
   * New upstream release.
