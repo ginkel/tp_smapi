@@ -1,7 +1,9 @@
 Author: Evgeni Golov <sargentd@die-welt.net>
 Description: make the Makefile work better with debian kernel-package
---- tp-smapi.orig/Makefile
-+++ tp-smapi/Makefile
+Index: tp-smapi/Makefile
+===================================================================
+--- tp-smapi.orig/Makefile	2009-03-26 16:46:02.000000000 +0100
++++ tp-smapi/Makefile	2009-03-26 17:44:46.000000000 +0100
 @@ -1,12 +1,13 @@
  ifndef TP_MODULES
  # This part runs as a normal, top-level Makefile:
@@ -20,7 +22,7 @@ Description: make the Makefile work better with debian kernel-package
  IDIR        := include/linux
  TP_DIR      := drivers/misc
  TP_MODULES  := thinkpad_ec.o tp_smapi.o
-@@ -25,6 +26,11 @@
+@@ -25,18 +26,24 @@
  THINKPAD_EC_PARAM := 
  endif
  
@@ -31,8 +33,31 @@ Description: make the Makefile work better with debian kernel-package
 +endif
  DEBUG := 0
  
- ifneq ($(shell [ -f $(KBUILD)/include/linux/aio_abi.h ] && echo 1),1)
-@@ -94,7 +100,7 @@
+-ifneq ($(shell [ -f $(KBUILD)/include/linux/aio_abi.h ] && echo 1),1)
+-$(warning Building tp_smapi requires Linux kernel 2.6.19 or newer, and matching kernel headers.)
+-$(warning You may need to override the following Make variables:)
+-$(warning .   KVER=$(KVER))
+-$(warning .   KBUILD=$(KBUILD))
+-$(warning .   MOD_DIR=$(MOD_DIR))
+-$(warning For "make patch", you may also need the full kernel sources, and may need to override:)
+-$(warning .   KSRC=$(KSRC))
+-$(error Missing kernel headers)
+-endif
++# We have 2.6.26 in stable - don't care for 2.6.19
++#ifneq ($(shell [ -f $(KBUILD)/include/linux/aio_abi.h ] && echo 1),1)
++#$(warning Building tp_smapi requires Linux kernel 2.6.19 or newer, and matching kernel headers.)
++#$(warning You may need to override the following Make variables:)
++#$(warning .   KVER=$(KVER))
++#$(warning .   KBUILD=$(KBUILD))
++#$(warning .   MOD_DIR=$(MOD_DIR))
++#$(warning For "make patch", you may also need the full kernel sources, and may need to override:)
++#$(warning .   KSRC=$(KSRC))
++#$(error Missing kernel headers)
++#endif
+ 
+ .PHONY: default clean modules load unload install patch check_hdaps mk-hdaps.diff
+ export TP_MODULES
+@@ -94,7 +101,7 @@
  #####################################################################
  # Generate a stand-alone kernel patch
  

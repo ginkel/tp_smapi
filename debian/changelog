@@ -5,8 +5,11 @@ tp-smapi (0.40-3) unstable; urgency=low
     + Bump Standards-Version to 3.8.1.
   * debian/{control,rules,patches/}:
     + Use quilt instead of dpatch.
+  * debian/patches/99_Makefile-for-Debian.patch:
+    + Don't try to be smart and detect ancient kernels, that breaks.
+      Closes: #521296
 
- -- Evgeni Golov <sargentd@die-welt.net>  Thu, 26 Mar 2009 17:27:22 +0100
+ -- Evgeni Golov <sargentd@die-welt.net>  Thu, 26 Mar 2009 17:46:49 +0100
 
 tp-smapi (0.40-2) unstable; urgency=low
 
