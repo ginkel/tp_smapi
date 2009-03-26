@@ -2,10 +2,11 @@ tp-smapi (0.40-3) unstable; urgency=low
 
   * debian/control:
     + Fix typo in Vcs-Browser field.
+    + Bump Standards-Version to 3.8.1.
   * debian/{control,rules,patches/}:
     + Use quilt instead of dpatch.
 
- -- Evgeni Golov <sargentd@die-welt.net>  Thu, 26 Mar 2009 16:59:53 +0100
+ -- Evgeni Golov <sargentd@die-welt.net>  Thu, 26 Mar 2009 17:27:22 +0100
 
 tp-smapi (0.40-2) unstable; urgency=low
 

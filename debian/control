@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Evgeni Golov <sargentd@die-welt.net>
 Build-Depends: debhelper (>= 5), quilt (>= 0.40)
 Build-Depends-Indep: bzip2
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 Homepage: http://tpctl.sourceforge.net/
 DM-Upload-Allowed: yes
 Vcs-Git: git://git.debian.org/git/users/sargentd-guest/tp-smapi.git
