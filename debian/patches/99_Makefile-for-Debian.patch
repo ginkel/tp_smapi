@@ -1,12 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 99_Makefile-for-Debian.dpatch by Evgeni Golov <sargentd@die-welt.net>
-##
-## DP: make the Makefile work better with debian kernel-package
-
-@DPATCH@
-
---- tp-smapi_0.40.orig/Makefile	2008-12-16 09:45:04.000000000 +0100
-+++ tp-smapi_0.40/Makefile	2008-12-16 09:45:21.000000000 +0100
+Author: Evgeni Golov <sargentd@die-welt.net>
+Description: make the Makefile work better with debian kernel-package
+--- tp-smapi.orig/Makefile
++++ tp-smapi/Makefile
 @@ -1,12 +1,13 @@
  ifndef TP_MODULES
  # This part runs as a normal, top-level Makefile:

@@ -3,7 +3,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-include /usr/share/dpatch/dpatch.make
+include /usr/share/quilt/quilt.make
 
 CFLAGS ?= -Wall -g
 
@@ -55,7 +55,7 @@ kdist_clean: clean
 #
 ### end  KERNEL SETUP
 
-build: patch-stamp
+build: $(QUILT_STAMPFN)
 
 clean: clean-patched unpatch
 clean-patched:
