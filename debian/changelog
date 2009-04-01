@@ -8,8 +8,11 @@ tp-smapi (0.40-3) unstable; urgency=low
   * debian/patches/99_Makefile-for-Debian.patch:
     + Don't try to be smart and detect ancient kernels, that breaks.
       Closes: #521296
+  * debian/rules.modules:
+    + Install hdaps.ko in $(KVERS)/updates/, not $(KVERS)/kernel/updates/.
+      Closes: #522113
 
- -- Evgeni Golov <sargentd@die-welt.net>  Thu, 26 Mar 2009 17:46:49 +0100
+ -- Evgeni Golov <sargentd@die-welt.net>  Wed, 01 Apr 2009 12:17:45 +0200
 
 tp-smapi (0.40-2) unstable; urgency=low
 

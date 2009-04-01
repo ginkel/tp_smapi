@@ -66,7 +66,7 @@ binary-modules: prep-deb-files
 	# Install the module
 	install -D -m 0644 thinkpad_ec.ko debian/$(PACKAGE)-$(KVERS)/lib/modules/$(KVERS)/extra/thinkpad_ec.ko
 	install -D -m 0644 tp_smapi.ko debian/$(PACKAGE)-$(KVERS)/lib/modules/$(KVERS)/extra/tp_smapi.ko
-	install -D -m 0644 hdaps.ko debian/$(PACKAGE)-$(KVERS)/lib/modules/$(KVERS)/kernel/updates/hdaps.ko
+	install -D -m 0644 hdaps.ko debian/$(PACKAGE)-$(KVERS)/lib/modules/$(KVERS)/updates/hdaps.ko
 
 	dh_installdocs README
 	dh_installchangelogs CHANGES
