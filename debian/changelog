@@ -14,6 +14,7 @@ tp-smapi (0.40-3) unstable; urgency=low
   * debian/rules:
     + Add README.Debian to tp-smapi.tar.bz2, so it will show up in the
       built -modules package.
+      Closes: #498207
 
  -- Evgeni Golov <sargentd@die-welt.net>  Fri, 03 Apr 2009 11:45:39 +0200
 
