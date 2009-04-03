@@ -79,6 +79,7 @@ install: build
 	cp debian/*.modules.in* \
 		debian/$(psource)/usr/src/modules/$(sname)/debian
 	cp debian/sysfs.conf debian/control debian/changelog debian/copyright \
+		debian/README.Debian \
 		debian/compat debian/$(psource)/usr/src/modules/$(sname)/debian/
 	install -m 0755 debian/rules.modules debian/$(psource)/usr/src/modules/$(sname)/debian/rules
 	cd debian/$(psource)/usr/src && tar c modules | bzip2 -9 > $(sname).tar.bz2 && rm -rf modules
