@@ -1,5 +1,5 @@
 Source: tp-smapi
-Section: misc
+Section: kernel
 Priority: optional
 Maintainer: Evgeni Golov <sargentd@die-welt.net>
 Build-Depends: debhelper (>= 5), quilt (>= 0.40)

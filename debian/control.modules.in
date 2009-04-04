@@ -1,9 +1,9 @@
 Source: tp-smapi
-Section: utils
+Section: kernel
 Priority: optional
 Maintainer: Evgeni Golov <sargentd@die-welt.net>
 Build-Depends: debhelper (>= 5)
-Standards-Version: 3.7.3
+Standards-Version: 3.8.1
 Homepage: http://tpctl.sourceforge.net/
 
 Package: tp-smapi-modules-_KVERS_
