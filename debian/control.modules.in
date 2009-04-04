@@ -11,7 +11,8 @@ Architecture: any
 Depends: linux-modules-_KVERS_ | linux-image-_KVERS_
 Provides: tp-smapi-modules
 Suggests: sysfsutils
-Description: tp_smapi modules for Linux (kernel _KVERS_)
- This package contains the compiled kernel modules for _KVERS_
+Description: ThinkPad hardware/firmware access modules for Linux _KVERS_
+ This package provides the ThinkPad hardware/firmware access modules for
+ the Linux kernel version _KVERS_.
  .
- This package also contains the compiled HDAPS modules for _KVERS_
+ This package also contains the compiled HDAPS modules for _KVERS_.

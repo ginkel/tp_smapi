@@ -14,13 +14,13 @@ Package: tp-smapi-source
 Architecture: all
 Depends: debhelper (>= 5), module-assistant
 Suggests: sysfsutils
-Description: Source for the tp_smapi kernel modules
+Description: ThinkPad hardware/firmware access modules source
  The tp_smapi kernel module exposes some features of the ThinkPad
  hardware/firmware via a sysfs interface. Currently, the main implemented
  functionality is control of battery charging and extended battery status.
  The underlying hardware interfaces are SMAPI and direct access to the
- embedded controller
+ embedded controller.
  .
  This package also brings the source for an improved version of HDAPS
  which should work on newer ThinkPads too (the stock kernel version does
- not)
+ not).
