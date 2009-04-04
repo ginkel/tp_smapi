@@ -1,76 +1,28 @@
-This package was debianized by Evgeni Golov <sargentd@die-welt.net> on
-Fri, 08 Dec 2006 16:56:00 +0100.
+Format-Specification:
+ http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=454
+Upstream-Name: tp_smapi
+Upstream-Maintainer: JShem Multinymous <multinymous@gmail.com>
+Upstream-Source: http://tpctl.sourceforge.net/
 
-It was downloaded from <http://tpctl.sourceforge.net/>.
+Files: *
+Copyright: © 2006-2009 Shem Multinymous  <multinymous@gmail.com>
+License: GPL-2+
 
-Upstream Author: Shem Multinymous <multinymous@gmail.com>
+Files: tp_smapi.c
+Copyright: © 2006-2009 Shem Multinymous  <multinymous@gmail.com>
+             SMAPI access code based on the mwave driver by Mike Sullivan
+License: GPL-2+
 
-Licence (except hdaps.c and tp_smapi.c):
+Files: hdaps.c
+Copyright: © 2005 Robert Love <rml@novell.com>
+Copyright: © 2005 Jesper Juhl <jesper.juhl@gmail.com>
+Copyright: © 2006-2009 Shem Multinymous  <multinymous@gmail.com>
+License: GPL-2
 
-	Copyright (c) 2006 by Shem Multinymous  <multinymous@gmail.com>
+Files: debian/*
+Copyright: © 2006-2009 Evgeni Golov <sargentd@die-welt.net>
+License: GPL-2+
 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the
-  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-  MA 02110-1301, USA.
-
-On Debian systems, the complete text of the GNU General Public License
-can be found in /usr/share/common-licenses/GPL-2 file.
-
-Licence (tp_smapi.c):
-
-	Copyright (c) 2006 by Shem Multinymous  <multinymous@gmail.com>
-	SMAPI access code based on the mwave driver by Mike Sullivan
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the
-  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-  MA 02110-1301, USA.
-
-On Debian systems, the complete text of the GNU General Public License
-can be found in /usr/share/common-licenses/GPL-2 file.
-
-Licence (hdaps.c):
-
-	Copyright (C) 2005 Robert Love <rml@novell.com>
-	Copyright (C) 2005 Jesper Juhl <jesper.juhl@gmail.com>
- 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License v2 as published
-  by the Free Software Foundation.
-
-  This program is distributed in the hope that it will be useful, but
-  WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the
-  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-  Boston, MA  02110-1301, USA
-
-On Debian systems, the complete text of the GNU General Public License
-can be found in /usr/share/common-licenses/GPL-2 file.
-
-The Debian packaging is (C) 2006-2007, Evgeni Golov <sargentd@die-welt.net>
-and is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+License: GPL-2 | GPL-2+
+ On Debian systems, the complete text of the GNU General Public License
+ Version 2 can be found in the /usr/share/common-licenses/GPL-2 file.

@@ -21,8 +21,10 @@ tp-smapi (0.40-3) unstable; urgency=low
       Closes: #498207
   * debian/control{,modules.in}:
     + Update descriptions.
+  * debian/copyright:
+    + Update to machine-readable format, update dates etc.
 
- -- Evgeni Golov <sargentd@die-welt.net>  Sun, 05 Apr 2009 00:28:12 +0200
+ -- Evgeni Golov <sargentd@die-welt.net>  Sun, 05 Apr 2009 00:57:23 +0200
 
 tp-smapi (0.40-2) unstable; urgency=low
 
