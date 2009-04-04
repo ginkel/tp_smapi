@@ -5,6 +5,8 @@ Maintainer: Evgeni Golov <sargentd@die-welt.net>
 Build-Depends: debhelper (>= 5)
 Standards-Version: 3.8.1
 Homepage: http://tpctl.sourceforge.net/
+Vcs-Git: git://git.debian.org/git/users/sargentd-guest/tp-smapi.git
+Vcs-Browser: http://git.debian.org/?p=users/sargentd-guest/tp-smapi.git
 
 Package: tp-smapi-modules-_KVERS_
 Architecture: any

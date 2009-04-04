@@ -19,12 +19,14 @@ tp-smapi (0.40-3) unstable; urgency=low
     + Add README.Debian to tp-smapi.tar.bz2, so it will show up in the
       built -modules package.
       Closes: #498207
-  * debian/control{,modules.in}:
+  * debian/control{,.modules.in}:
     + Update descriptions.
   * debian/copyright:
     + Update to machine-readable format, update dates etc.
+  * debian/control.moldules.in:
+    + Add Vcs-* headers too.
 
- -- Evgeni Golov <sargentd@die-welt.net>  Sun, 05 Apr 2009 00:57:23 +0200
+ -- Evgeni Golov <sargentd@die-welt.net>  Sun, 05 Apr 2009 01:07:56 +0200
 
 tp-smapi (0.40-2) unstable; urgency=low
 
