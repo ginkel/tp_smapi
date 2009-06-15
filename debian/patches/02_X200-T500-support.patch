@@ -1,3 +1,11 @@
+From: Evgeni Golov <evgeni@debian.org>
+Date: 2009-06-15 20:54:14 +0200
+Subject: Add T500 and X200 invert quirks
+License: GPL-2+
+
+Based on patch by Jouston Huang 
+from https://bugs.launchpad.net/ubuntu/+source/tp-smapi/+bug/370289
+
 Index: tp-smapi/hdaps.c
 ===================================================================
 --- tp-smapi.orig/hdaps.c	2009-06-15 20:54:14.000000000 +0200
