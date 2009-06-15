@@ -4,8 +4,11 @@ tp-smapi (0.40-4) UNRELEASED; urgency=low
     + Update my e-mail address.
     + Move Vcs-* fields to my new home on Alioth.
     + Remove DM-Upload-allowed.
+  * debian/patches/02_X200-T500-support.patch:
+    + Add invert quirks for X200 and T500 reported on Launchpad.
+      Closes LP: #374492 and LP: #370289.
 
- -- Evgeni Golov <evgeni@debian.org>  Mon, 15 Jun 2009 15:13:21 +0200
+ -- Evgeni Golov <evgeni@debian.org>  Mon, 15 Jun 2009 20:57:07 +0200
 
 tp-smapi (0.40-3) unstable; urgency=low
 
