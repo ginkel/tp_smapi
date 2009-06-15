@@ -1,4 +1,4 @@
-tp-smapi (0.40-4) UNRELEASED; urgency=low
+tp-smapi (0.40-4) unstable; urgency=low
 
   * debian/control{,modules.in}:
     + Update my e-mail address.
@@ -8,7 +8,7 @@ tp-smapi (0.40-4) UNRELEASED; urgency=low
     + Add invert quirks for X200 and T500 reported on Launchpad.
       Closes LP: #374492 and LP: #370289.
 
- -- Evgeni Golov <evgeni@debian.org>  Mon, 15 Jun 2009 20:57:07 +0200
+ -- Evgeni Golov <evgeni@debian.org>  Tue, 16 Jun 2009 01:26:50 +0200
 
 tp-smapi (0.40-3) unstable; urgency=low
 
