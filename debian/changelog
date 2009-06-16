@@ -1,3 +1,11 @@
+tp-smapi (0.40-5) unstable; urgency=low
+
+  * Fix typo in X200/T500 patch.
+    Thanks Kiko Piris <menorqui@pirispons.net>
+    Closes: #533289
+
+ -- Evgeni Golov <evgeni@debian.org>  Tue, 16 Jun 2009 11:59:02 +0200
+
 tp-smapi (0.40-4) unstable; urgency=low
 
   * debian/control{,modules.in}:
