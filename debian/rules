@@ -92,7 +92,7 @@ install: build
 	install -m 0755 debian/rules.modules debian/$(psource)/usr/src/modules/$(sname)/debian/rules
 	cd debian/$(psource)/usr/src && tar c modules | bzip2 -9 > $(sname).tar.bz2 && rm -rf modules
 
-	# Do stuff for DKMS
+	# Prepare dkms.conf from the dkms.conf.in template
 	sed "s/__VERSION__/$(sversion)/g" debian/dkms.conf.in > debian/$(pdkms)/usr/src/$(sname)-$(sversion)/dkms.conf
 
 	dh_install
