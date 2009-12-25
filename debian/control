@@ -23,11 +23,14 @@ Description: ThinkPad hardware/firmware access modules source
  This package also brings the source for an improved version of HDAPS
  which should work on newer ThinkPads too (the stock kernel version does
  not).
+ .
+ This package contains the source to be built with module-assistant or
+ kernel-package.
 
 Package: tp-smapi-dkms
 Architecture: all
 Depends: dkms (>= 1.95), ${misc:Depends}
-Description: ThinkPad hardware/firmware access modules source - dkms
+Description: ThinkPad hardware/firmware access modules source - dkms version
  The tp_smapi kernel module exposes some features of the ThinkPad
  hardware/firmware via a sysfs interface. Currently, the main implemented
  functionality is control of battery charging and extended battery status.
@@ -37,3 +40,6 @@ Description: ThinkPad hardware/firmware access modules source - dkms
  This package also brings the source for an improved version of HDAPS
  which should work on newer ThinkPads too (the stock kernel version does
  not).
+ .
+ This package contains the source to be built with dkms.
+
