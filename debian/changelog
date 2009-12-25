@@ -6,8 +6,10 @@ tp-smapi (0.40-6) unstable; urgency=low
   * debian/patches/02_X200-T500-support.patch:
     + Add invert=1 for T400 too.
       Closes: #541641.
+  * debian/copyright:
+    + Update my e-mail address.
 
- -- Evgeni Golov <evgeni@debian.org>  Fri, 25 Dec 2009 16:52:32 +0100
+ -- Evgeni Golov <evgeni@debian.org>  Fri, 25 Dec 2009 18:15:36 +0100
 
 tp-smapi (0.40-5) unstable; urgency=low
 
