@@ -8,12 +8,13 @@ from https://bugs.launchpad.net/ubuntu/+source/tp-smapi/+bug/370289
 
 Index: tp-smapi/hdaps.c
 ===================================================================
---- tp-smapi.orig/hdaps.c	2009-06-15 20:54:14.000000000 +0200
-+++ tp-smapi/hdaps.c	2009-06-15 20:56:29.000000000 +0200
-@@ -750,6 +750,8 @@
+--- tp-smapi.orig/hdaps.c	2009-12-25 16:50:37.000000000 +0100
++++ tp-smapi/hdaps.c	2009-12-25 16:51:59.000000000 +0100
+@@ -750,6 +750,9 @@
  	HDAPS_DMI_MATCH_INVERT("LENOVO", "ThinkPad X60s", HDAPS_ORIENT_INVERT_Y),
  	HDAPS_DMI_MATCH_INVERT("LENOVO", "ThinkPad X60", HDAPS_ORIENT_SWAP | HDAPS_ORIENT_INVERT_X),
  	HDAPS_DMI_MATCH_INVERT("LENOVO", "ThinkPad X61", HDAPS_ORIENT_SWAP | HDAPS_ORIENT_INVERT_X),
++	HDAPS_DMI_MATCH_INVERT("LENOVO", "ThinkPad T400", HDAPS_ORIENT_INVERT_XY),
 +	HDAPS_DMI_MATCH_INVERT("LENOVO", "ThinkPad T500", HDAPS_ORIENT_INVERT_XY),
 +	HDAPS_DMI_MATCH_INVERT("LENOVO", "ThinkPad X200", HDAPS_ORIENT_SWAP | HDAPS_ORIENT_INVERT_X | HDAPS_ORIENT_INVERT_Y),
  	{ .ident = NULL }

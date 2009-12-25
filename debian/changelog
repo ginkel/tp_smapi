@@ -3,8 +3,11 @@ tp-smapi (0.40-6) unstable; urgency=low
   * Add DKMS support.
   * debian/control{,modules.in}:
     + Standards-Version: 3.8.3.
+  * debian/patches/02_X200-T500-support.patch:
+    + Add invert=1 for T400 too.
+      Closes: #541641.
 
- -- Evgeni Golov <evgeni@debian.org>  Fri, 25 Dec 2009 16:42:21 +0100
+ -- Evgeni Golov <evgeni@debian.org>  Fri, 25 Dec 2009 16:52:32 +0100
 
 tp-smapi (0.40-5) unstable; urgency=low
 
