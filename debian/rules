@@ -81,7 +81,7 @@ install: build
 
 	# Copy only the driver source to the proper locations
 	cp -a CHANGES README Makefile *.c *.h debian/$(psource)/usr/src/modules/$(sname)
-	cp -a CHANGES README Makefile *.c *.h debian/$(pdkms)/usr/src/$(sname)-$(sversion)
+	cp -a Makefile *.c *.h debian/$(pdkms)/usr/src/$(sname)-$(sversion)
 
 	# Copy the needed debian/ pieces to the proper location
 	cp debian/*.modules.in* \
@@ -102,8 +102,8 @@ binary-arch: build install
 binary-indep: build install
 	dh_testdir
 	dh_testroot
-	dh_installdocs README
-	dh_installchangelogs CHANGES
+	dh_installdocs -A README
+	dh_installchangelogs -A CHANGES
 	dh_install
 	dh_link
 	dh_compress

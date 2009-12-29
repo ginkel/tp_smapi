@@ -11,7 +11,7 @@ Vcs-Browser: http://git.debian.org/?p=users/evgeni/tp-smapi.git
 
 Package: tp-smapi-source
 Architecture: all
-Depends: debhelper (>= 5), module-assistant
+Depends: debhelper (>= 5), module-assistant, ${misc:Depends}
 Suggests: sysfsutils
 Description: ThinkPad hardware/firmware access modules source
  The tp_smapi kernel module exposes some features of the ThinkPad
