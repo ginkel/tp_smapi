@@ -5,14 +5,6 @@
 
 include /usr/share/quilt/quilt.make
 
-CFLAGS ?= -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
-
 # some default definitions, important!
 #
 # Name of the source package

@@ -3,10 +3,11 @@ tp-smapi (0.40-7) unstable; urgency=low
   * debian/rules:
     + Install README and CHANGES into /u/s/d/tp-smapi-dkms/
       Closes: #562917
+    + We do not need CFLAGS here, remove them.
   * debian/control:
     + Add ${misc:Depends} to Depends of tp-smapi-source, thanks lintian.
 
- -- Evgeni Golov <evgeni@debian.org>  Tue, 29 Dec 2009 14:35:16 +0100
+ -- Evgeni Golov <evgeni@debian.org>  Tue, 29 Dec 2009 15:09:58 +0100
 
 tp-smapi (0.40-6) unstable; urgency=low
 
