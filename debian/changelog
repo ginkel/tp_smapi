@@ -6,8 +6,12 @@ tp-smapi (0.40-7) unstable; urgency=low
     + We do not need CFLAGS here, remove them.
   * debian/control:
     + Add ${misc:Depends} to Depends of tp-smapi-source, thanks lintian.
+  * debian/tp-smapi-dkms.postinst:
+    + Rework building of the module, so it won't fail in the case the
+      correct kernel headers are not available.
+      Closes: #562871
 
- -- Evgeni Golov <evgeni@debian.org>  Tue, 29 Dec 2009 15:09:58 +0100
+ -- Evgeni Golov <evgeni@debian.org>  Wed, 20 Jan 2010 09:23:26 +0100
 
 tp-smapi (0.40-6) unstable; urgency=low
 
