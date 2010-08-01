@@ -5,8 +5,10 @@ tp-smapi (0.40-8) unstable; urgency=low
     + Update patch for X201s, T410 and T400s.
   * debian/control:
     + Standards-Version: 3.9.1.
+  * debian/source/format:
+    + 1.0 for now.
 
- -- Evgeni Golov <evgeni@debian.org>  Sun, 01 Aug 2010 18:10:46 +0200
+ -- Evgeni Golov <evgeni@debian.org>  Sun, 01 Aug 2010 18:13:06 +0200
 
 tp-smapi (0.40-7) unstable; urgency=low
 
