@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Evgeni Golov <evgeni@debian.org>
 Build-Depends: debhelper (>= 5), quilt (>= 0.40)
 Build-Depends-Indep: bzip2
-Standards-Version: 3.8.4
+Standards-Version: 3.9.1
 Homepage: http://tpctl.sourceforge.net/
 Vcs-Git: git://git.debian.org/git/users/evgeni/tp-smapi.git
 Vcs-Browser: http://git.debian.org/?p=users/evgeni/tp-smapi.git
