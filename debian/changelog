@@ -1,3 +1,9 @@
+tp-smapi (0.40-10) UNRELEASED; urgency=low
+
+  * Update 02_hdaps-orientation-update.patch for X201 and X201t.
+
+ -- Evgeni Golov <evgeni@debian.org>  Fri, 04 Feb 2011 10:12:13 +0100
+
 tp-smapi (0.40-9) unstable; urgency=low
 
   * debian/patches/03_2.6.37-compatibility.patch:
