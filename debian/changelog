@@ -1,3 +1,10 @@
+tp-smapi (0.40-11~ppa2) natty; urgency=low
+
+  * Fixed EC detection for T420(s)
+  * Fixed charge control for T420(s)
+
+ -- Thilo-Alexander Ginkel <thilo@ginkel.com>  Wed, 01 Jun 2011 17:06:23 +0200
+
 tp-smapi (0.40-10) UNRELEASED; urgency=low
 
   * Update 02_hdaps-orientation-update.patch for X201 and X201t.
