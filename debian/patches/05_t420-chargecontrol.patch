@@ -1,0 +1,31 @@
+Index: tp-smapi/tp_smapi.c
+===================================================================
+--- tp-smapi.orig/tp_smapi.c	2011-06-01 15:50:57.043087877 +0200
++++ tp-smapi/tp_smapi.c	2011-06-01 15:51:03.813087881 +0200
+@@ -88,7 +88,7 @@
+ static struct { u8 rc; char *msg; int ret; } smapi_retcode[] =
+ {
+ 	{0x00, "OK", 0},
+-	{0x53, "SMAPI fuction is not available", -ENXIO},
++	{0x53, "SMAPI function is not available", -ENXIO},
+ 	{0x81, "Invalid parameter", -EINVAL},
+ 	{0x86, "Function is not supported by SMAPI BIOS", -EOPNOTSUPP},
+ 	{0x90, "System error", -EIO},
+@@ -779,7 +779,7 @@
+ 
+ 	down(&smapi_mutex);
+ 	ret = get_thresh(bat, THRESH_STOP, &other_thresh);
+-	if (ret != -EOPNOTSUPP) {
++	if (ret != -EOPNOTSUPP && ret != -ENXIO) {
+ 		if (ret) /* other threshold is set? */
+ 			goto out;
+ 		ret = get_real_thresh(bat, THRESH_START, NULL);
+@@ -821,7 +821,7 @@
+ 
+ 	down(&smapi_mutex);
+ 	ret = get_thresh(bat, THRESH_START, &other_thresh);
+-	if (ret != -EOPNOTSUPP) { /* other threshold exists? */
++	if (ret != -EOPNOTSUPP && ret != -ENXIO) { /* other threshold exists? */
+ 		if (ret)
+ 			goto out;
+ 		/* this threshold exists? */

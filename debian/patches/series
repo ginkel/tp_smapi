@@ -3,3 +3,4 @@
 03_2.6.37-compatibility.patch
 99_Makefile-for-Debian.patch
 04_t420-whitelist.patch
+05_t420-chargecontrol.patch
