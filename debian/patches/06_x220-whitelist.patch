@@ -1,0 +1,12 @@
+Index: tp-smapi/thinkpad_ec.c
+===================================================================
+--- tp-smapi.orig/thinkpad_ec.c	2011-06-01 22:56:59.202257188 +0200
++++ tp-smapi/thinkpad_ec.c	2011-06-01 22:57:23.282257202 +0200
+@@ -462,6 +462,7 @@
+ 		TP_DMI_MATCH("IBM", "ThinkPad X24"),
+ 		TP_DMI_MATCH("LENOVO", "ThinkPad T420s"),
+ 		TP_DMI_MATCH("LENOVO", "ThinkPad T420"),
++		TP_DMI_MATCH("LENOVO", "ThinkPad X220"),
+ 		{ .ident = NULL }
+ 	};
+ 	return dmi_find_substring(DMI_DEV_TYPE_OEM_STRING,

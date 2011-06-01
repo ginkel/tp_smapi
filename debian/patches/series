@@ -4,3 +4,4 @@
 99_Makefile-for-Debian.patch
 04_t420-whitelist.patch
 05_t420-chargecontrol.patch
+06_x220-whitelist.patch
