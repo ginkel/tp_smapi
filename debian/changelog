@@ -1,3 +1,9 @@
+tp-smapi (0.40-11~ppa3) natty; urgency=low
+
+  * Fixed EC detection for X220
+
+ -- Thilo-Alexander Ginkel <thilo@ginkel.com>  Wed, 01 Jun 2011 22:59:42 +0200
+
 tp-smapi (0.40-11~ppa2) natty; urgency=low
 
   * Fixed EC detection for T420(s)
